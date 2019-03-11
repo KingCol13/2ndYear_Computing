@@ -279,6 +279,7 @@ class Simulation():
         
         
         #get velocities to work out pressure
+        #I should use .copy(), I'm not sure why this works
         v1_before = ball1.vel()
         v2_before = ball2.vel()
         

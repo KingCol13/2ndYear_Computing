@@ -13,11 +13,11 @@ import time
 
 k_b = 1.38064852e-23
 
-no_balls = 300
-ball_radius = 0.01
+no_balls = 10
+ball_radius = 1
 mag_vel = 1
 
-no_collisions = 2000
+no_collisions = 100
 animate = False
 histos = False
 
