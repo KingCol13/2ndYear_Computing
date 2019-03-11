@@ -187,8 +187,12 @@ class Simulation():
     Simulation class is a composition of container and all the balls.
     Contains methods for initialising, running and evaluating the simulation.
     """
-    def __init__(self, no_balls, mag_vel=1, ball_radius=0.001 , cont_rad=10):
+    def __init__(self, no_balls, mag_vel=1, ball_radius=0.001 , cont_rad=10, spacing=0.5):
         """
+        mag_vel is half of the maximum velocity of the balls
+        cont_rad is the radius of the container
+        spacing is the arc length and radial initial spacing between balls
+        
         Init creates the container, balls and places them.
         It also initialises the triangular matrix of collision times.
         Checks that the average momentum of the balls is 0.
@@ -213,7 +217,7 @@ class Simulation():
         #gap automation by setting values to a
         #a is found by approximations and trial and error
         a = -0.5*sp.sqrt(sp.pi/no_balls)*cont_rad - ball_radius
-        a=0.97
+        a=spacing
         print(a)
         r_gap, arc_gap = a, a
         if r_gap<0 or arc_gap<0:
@@ -260,11 +264,12 @@ class Simulation():
         self._total_momentum_change = 0
         self._time = 0
     def next_collision(self):
-#        """
-#        Find the next collision from the time to collision matrix and move all the balls
-#        to the time of the next collision. Also update the time to collision matrix with
-#        new times to next collision. Will call time_to_collision approximately 2N times.
-#        """
+        
+        """
+        Find the next collision from the time to collision matrix and move all the balls
+        to the time of the next collision. Also update the time to collision matrix with
+        new times to next collision. Will call time_to_collision approximately 2N times.
+        """
         
         #Find time to nearest collision t_min in matrix
         t_min = sp.amin(self._t_cols)

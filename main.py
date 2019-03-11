@@ -14,17 +14,19 @@ import time
 k_b = 1.38064852e-23
 
 no_balls = 10
-ball_radius = 1
+ball_radius = 0.1
 mag_vel = 1
+cont_rad = 10
+spacing = 0.5
 
-no_collisions = 100
-animate = False
+no_collisions = 2000
+animate = True
 histos = False
 
 start = time.time()
 print("Started simulation at: " + str(time.ctime(start)))
 
-sim = bm.Simulation(no_balls, mag_vel=mag_vel, ball_radius=ball_radius, cont_rad=10)
+sim = bm.Simulation(no_balls, mag_vel=mag_vel, ball_radius=ball_radius, cont_rad=cont_rad, spacing=spacing)
 print("Initial KE = " + str(sim.ke()))
 print("Mean initial velocity = " + str(sim.av_velocity()))
 

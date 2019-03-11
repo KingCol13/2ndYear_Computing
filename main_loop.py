@@ -35,8 +35,10 @@ sims = 31
 
 j=0
 
+# used ball_radius = 0.001 for IGL data when not varying it
+
 for i in no_b:
-    sim = bm.Simulation(int(i), ball_radius=0.001, cont_rad=10)
+    sim = bm.Simulation(int(i), ball_radius=0.2, cont_rad=10)
     j+=1
     print("Running simulation " + str(j) + " of " + str(len(no_b)) + ".")
     sim.run(no_collisions , animate=animate, histos=histos)
@@ -60,6 +62,4 @@ print("Time elapsed: " + str(end-start))
 
 data = [P, V, T, KE, v, no_b]
 
-save_name = "nb" + str(no_balls) + "ncol" + str(no_collisions) + "v-vary1-" + str(sims-1)
-
-sp.save("nb300ncol2000no_bvary10-110", data)
+sp.save("nb300ncol2000VDWn_vary.np", data)
