@@ -392,12 +392,18 @@ class Simulation():
         plt.ylabel("Frequency (No Units)")
         plt.hist(self.r_rel_histo, bins=50)
     def rms_speed(self):
+        """
+        Find the root mean square speet of the system
+        """
         sum1 = 0
         for i in self._ball_list:
             sum1 += sp.dot(i.vel(), i.vel())
         mean = sum1/(self._no_balls-1) #-1 because of container
         return sp.sqrt(mean)
     def mean_ke(self):
+        """
+        Find the mean kinetic energy of the system
+        """
         sum1 = 0
         for i in self._ball_list:
             sum1 += i.mass()*sp.dot(i.vel(), i.vel())
@@ -412,12 +418,24 @@ class Simulation():
     def volume(self):
         return sp.pi*self._container.rad()**2
     def av_velocity(self):
+        """
+        Find the average velocity of the system
+        """
         v_sum = 0
         for i in self._ball_list:
             v_sum+=nl.norm(i.vel())
         av = v_sum/(self._no_balls-1)
         return av
     def mfpl_histo(self, bins):
+        """
+        
+        Plot a histogram of the mean free path lengths of each ball
+        
+        """
+        plt.figure()
+        plt.title("Histogram of Mean Free Path")
+        plt.xlabel("Distance (m)")
+        plt.ylabel("Frequency (No Units)")
         x = []
         path_sum = 0
         for i in self._ball_list:

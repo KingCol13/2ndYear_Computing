@@ -10,7 +10,7 @@ import scipy as sp
 import matplotlib.pyplot as plt
 import scipy.optimize as spo
 
-file = "nb300ncol2000VDWn_vary.np.npy"
+file = "nb300ncol2000VDWn_vary.npy"
 
 k_b = 1.38064852e-23
 
@@ -58,7 +58,7 @@ plt.plot(x_fit, fit_func(x_fit, *fit), label=r"$ax^2$ Fit", color="blue")
 ax = plt.gca()
 
 #label graph
-xlabel, ylabel, title = r"$\frac{N}{V}$ $(m^{-3})$", r"$\frac{Nk_bT}{V-Nb} - P (Pa)$", "Finding First Constant in VDW State Equation"
+xlabel, ylabel, title = r"$\frac{N}{V}$ $(m^{-2})$", r"$\frac{Nk_bT}{V-Nb} - P (Pa m)$", "Finding First Constant in VDW State Equation"
 
 ax.set_xlabel(xlabel)
 ax.set_ylabel(ylabel)

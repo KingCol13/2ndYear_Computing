@@ -10,14 +10,9 @@ import scipy as sp
 import matplotlib.pyplot as plt
 import scipy.optimize as spo
 
-#file = "nb300ncol2000cont_vary10-110.npy"
-#file = "nb300ncol2000no_bvary10-310.npy"
-file = "nb300ncol2000v_vary1-30.npy"
+file = "br0.1nb300ncol2000T_vary.npy"
 
 data = sp.load(file)
-
-xerr=0
-yerr=0
 
 P = data[0]
 V = data[1]
@@ -25,7 +20,11 @@ T = data[2]
 KE = data[3]
 v = data[4]
 
-y = (P*V)
+a = -2786.008784663777
+b = sp.pi*0.1**2
+
+#y = (P-a*(300/V)**2)*(V-300*b)
+y = P*V
 x = 300*T
 
 plt.grid()
@@ -44,7 +43,6 @@ p0 = [8, 80]
 fit, cov = spo.curve_fit(fit_func, x, y, p0)
 
 print(fit)
-print(sp.sqrt(cov))
 
 plt.plot(x_fit, fit_func(x_fit, *fit), label=r"$ax+c$ Fit", color="blue")
 
@@ -54,7 +52,7 @@ plt.plot(x_fit, fit_func(x_fit, *fit), label=r"$ax+c$ Fit", color="blue")
 ax = plt.gca()
 
 #label graph
-xlabel, ylabel, title = r"NT ($K$)", r"PV (J)", "Ideal Gas Equation of State"
+xlabel, ylabel, title = r"NT ($K$)", r"$(P-a\frac{N^2}{V^2})(V-Nb)$ (J)", "Van der Waals Equation of State"
 
 ax.set_xlabel(xlabel)
 ax.set_ylabel(ylabel)

@@ -30,6 +30,7 @@ v = []
 no_b = sp.linspace(10, 310, 51)
 b_r = sp.linspace(0.0001, 1.0001, 51)
 c_r = sp.linspace(10, 110, 51)
+t_vary = sp.sqrt(sp.linspace(1, 100, 100))
 
 sims = 31
 
@@ -37,10 +38,10 @@ j=0
 
 # used ball_radius = 0.001 for IGL data when not varying it
 
-for i in no_b:
-    sim = bm.Simulation(int(i), ball_radius=0.2, cont_rad=10)
+for i in c_r:
+    sim = bm.Simulation(no_balls, ball_radius=0.1, mag_vel=i, cont_rad=10, spacing=0.7)
     j+=1
-    print("Running simulation " + str(j) + " of " + str(len(no_b)) + ".")
+    print("Running simulation " + str(j) + " of " + str(len(t_vary)) + ".")
     sim.run(no_collisions , animate=animate, histos=histos)
     
     P.append(sim.pressure())
@@ -62,4 +63,4 @@ print("Time elapsed: " + str(end-start))
 
 data = [P, V, T, KE, v, no_b]
 
-sp.save("nb300ncol2000VDWn_vary.np", data)
+sp.save("br0.1nb300ncol2000V_vary.np", data)

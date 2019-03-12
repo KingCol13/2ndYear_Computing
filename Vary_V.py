@@ -10,14 +10,10 @@ import scipy as sp
 import matplotlib.pyplot as plt
 import scipy.optimize as spo
 
-#file = "nb300ncol2000cont_vary10-110.npy"
-#file = "nb300ncol2000no_bvary10-310.npy"
-file = "nb300ncol2000v_vary1-30.npy"
+#file = "nb300ncol2000T_vary.npy"
+file = "br0.1nb300ncol2000T_vary.npy"
 
 data = sp.load(file)
-
-xerr=0
-yerr=0
 
 P = data[0]
 V = data[1]
@@ -25,8 +21,8 @@ T = data[2]
 KE = data[3]
 v = data[4]
 
-y = (P*V)
-x = 300*T
+y = P
+x = v
 
 plt.grid()
 
@@ -35,18 +31,18 @@ plt.grid()
 x_fit = sp.linspace(sp.amin(x), sp.amax(x), 1000)
 
 #function to fit parameters for
-def fit_func(x,a, c):
-    return a*x + c
+def fit_func(x,a):
+    return a*x**2
 
 #firt guesses
-p0 = [8, 80]
+p0 = [1e23]
 
 fit, cov = spo.curve_fit(fit_func, x, y, p0)
 
 print(fit)
 print(sp.sqrt(cov))
 
-plt.plot(x_fit, fit_func(x_fit, *fit), label=r"$ax+c$ Fit", color="blue")
+plt.plot(x_fit, fit_func(x_fit, *fit), label=r"$ax^2$ Fit", color="blue")
 
 
 #plotting
@@ -54,7 +50,7 @@ plt.plot(x_fit, fit_func(x_fit, *fit), label=r"$ax+c$ Fit", color="blue")
 ax = plt.gca()
 
 #label graph
-xlabel, ylabel, title = r"NT ($K$)", r"PV (J)", "Ideal Gas Equation of State"
+xlabel, ylabel, title = r"Velocity ($ms^{-1}$)", r"Pressure (Pa m)", "Quadratic Dependence of P on v"
 
 ax.set_xlabel(xlabel)
 ax.set_ylabel(ylabel)

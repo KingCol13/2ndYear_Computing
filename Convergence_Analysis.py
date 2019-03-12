@@ -44,6 +44,7 @@ p0 = [8, 80]
 fit, cov = spo.curve_fit(fit_func, x, y, p0)
 
 print(fit)
+print(sp.sqrt(cov))
 
 plt.plot(x_fit, fit_func(x_fit, *fit), label=r"$\frac{A}{x} + c$ Fit", color="blue")
 

@@ -13,14 +13,14 @@ import time
 
 k_b = 1.38064852e-23
 
-no_balls = 10
-ball_radius = 0.1
-mag_vel = 1
-cont_rad = 10
-spacing = 0.5
+no_balls = 300
+ball_radius = 152e-12#0.1
+mag_vel = 300
+cont_rad = 2e-12
+spacing = 0.7e-14
 
 no_collisions = 2000
-animate = True
+animate = False
 histos = False
 
 start = time.time()

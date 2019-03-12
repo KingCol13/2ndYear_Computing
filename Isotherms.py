@@ -54,7 +54,7 @@ plt.plot(x_fit, fit_func(x_fit, *fit), label=r"$\frac{A}{x} + c$ Fit", color="bl
 ax = plt.gca()
 
 #label graph
-xlabel, ylabel, title = "$V (m^{-3})$", r"$P\ (Pa)$", "PV Diagram Showing an Isotherm"
+xlabel, ylabel, title = "$V (m^{2})$", r"$P\ (Pa m)$", "PV Diagram Showing an Isotherm"
 
 ax.set_xlabel(xlabel)
 ax.set_ylabel(ylabel)
